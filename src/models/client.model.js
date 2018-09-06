@@ -25,7 +25,6 @@ module.exports = function (app) {
     },
     is_active: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
     }
   }, {
     hooks: {
@@ -38,6 +37,7 @@ module.exports = function (app) {
   client.associate = function (models) { // eslint-disable-line no-unused-vars
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    client.hasMany(models.account, {foreignKey: 'client_id'});
   };
 
   return client;

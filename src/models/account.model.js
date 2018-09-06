@@ -27,7 +27,7 @@ module.exports = function (app) {
     hooks: {
       beforeCount(options) {
         options.raw = true;
-      }
+      },
     },
   });
 
@@ -35,6 +35,7 @@ module.exports = function (app) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
     account.belongsTo(models.client, {foreignKey: 'client_id'});
+    account.hasMany(models.bill, {foreignKey: 'account_id'});
   };
 
   return account;

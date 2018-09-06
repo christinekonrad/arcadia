@@ -1,9 +1,17 @@
-
+const addAssociations = require('./../../hooks/add-associations');
 
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [
+      addAssociations({
+        models: [
+          {
+            model: 'client',
+          }
+        ]
+      })
+    ],
     get: [],
     create: [],
     update: [],
