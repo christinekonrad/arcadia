@@ -1,8 +1,9 @@
 const addAssociations = require('./../../hooks/add-associations');
+const { authenticate } = require('feathers-authentication').hooks;
 
 module.exports = {
   before: {
-    all: [],
+    all: [ authenticate('jwt') ],
     find: [
       addAssociations({
         models: [
