@@ -6,5 +6,29 @@
     "default": 10,
     "max": 50
   },
-  "postgres": "postgres://postgres:@localhost:5432/arcadia_app"
+  "postgres": "postgres://postgres:@localhost:5432/arcadia_app",
+  "authentication": {
+    "secret": "98afa32e4bc5b3eb8bddb4dd6a6f6775ca259afce701ef1d994c942c80cf3df74241e2dc204f9ca884c770b7b6d09b10712db3ebd9681d9d989d744a3133b82feba71fe32a1e8d948707df6cb6596fe53dcafe21ed87361c4354df8f305e498ff1dcba05e86045bb71749b6fc18a48ec6f972f276cefd7a4f1b3871b1d62f1dfabadc9d685e036c0cf8710ee68dde6c1a738f2fcd4227692346e020bb3f047340bb6e18df9dc6d791533292389c1ebcf57f0bbb36de63282e252f6699ccc07e2e2a625c92198956800a9b6184d896e9a1dbc3f821d05f8beb860e7e7a6bb9847e9e87a5ad4e1c6fb51166b0f9b8680c9ea840afc573195501d7a790424d68562",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "user",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  }
 }
