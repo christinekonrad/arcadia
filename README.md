@@ -26,25 +26,31 @@ Getting up and running is as easy as 1, 2, 3.
     ```
     
 5. Register a new user for the app by calling the /user endpoint.  The message body should contain the following: 
+    ```
     {     
           first_name:Bob
           last_name:Example
           email:bob@bob.com
           password:Password
     }
-    
+     ```   
 6. Use this user information to call the /authentication endpoint:
+    ```
     {
           email:bob@bob.com
           password:Password
           strategy:local
     }
+      ```
   You will receive a returned JWT token:
+   ```
     {
           "accessToken":"tokenvaluehere"
     }
-    
+   ```  
 7. Then use the token in the header of requests to the other endpoints (/bill, /client, /account):
+     ```
     {
           Authorization: Bearer tokenvaluehere
     }
+     ```
