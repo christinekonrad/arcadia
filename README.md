@@ -11,47 +11,71 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 Getting up and running is as easy as 1, 2, 3.
 
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
+
 2. Install your dependencies
 
     ```
     cd path/to/arcadia-app; npm install
     ```
+3. Update the .env file with your PostgreSQL information.
 
-3. Start your app
+4. Start your app
 
     ```
     npm start
     ```
-
-## Testing
-
-Simply run `npm test` and all your tests in the `test/` directory will be run.
-
-## Scaffolding
-
-Feathers has a powerful command line interface. Here are a few things it can do:
-
-```
-$ npm install -g feathers-cli             # Install Feathers CLI
-
-$ feathers generate service               # Generate a new Service
-$ feathers generate hook                  # Generate a new Hook
-$ feathers generate model                 # Generate a new Model
-$ feathers help                           # Show all commands
-```
-
-## Help
-
-For more information on all the things you can do with Feathers visit [docs.feathersjs.com](http://docs.feathersjs.com).
-
-## Changelog
-
-__0.1.0__
-
-- Initial release
-
-## License
-
-Copyright (c) 2016
-
-Licensed under the [MIT license](LICENSE).
+    
+5. Register a new user for the app by calling the /user endpoint.  The message body should contain the following: 
+    ```
+    {     
+          first_name:Bob
+          last_name:Example
+          email:bob@bob.com
+          password:Password
+    }
+     ```   
+6. Use this user information to call the /authentication endpoint:
+    ```
+    {
+          email:bob@bob.com
+          password:Password
+          strategy:local
+    }
+      ```
+  You will receive a returned JWT token:
+   ```
+    {
+          "accessToken":"tokenvaluehere"
+    }
+   ```  
+7. Then use the token in the header of requests to the other endpoints (/bill, /client, /account):
+     ```
+    {
+          Authorization: Bearer tokenvaluehere
+    }
+     ```
+8. Example POST to create records:
+     ```
+     endpoint: /client
+     body:
+        first_name:Mary
+        last_name:Test
+        email:mary@test.com
+     
+     endpoint: /account
+     body:
+        client_id: 1
+        account_number: ABC123
+        utility: dominion
+        account_type: residential
+        
+     endpoint: /bill
+     body: 
+        account_id: 1
+        start_date: 01-01-2015
+        end_date: 01-01-2016
+        usage: 100
+        charges: 100.00
+        status: paid
+        
+     ```
