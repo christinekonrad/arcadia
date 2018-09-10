@@ -54,3 +54,28 @@ Getting up and running is as easy as 1, 2, 3.
           Authorization: Bearer tokenvaluehere
     }
      ```
+8. Example POST to create records:
+     ```
+     endpoint: /client
+     body:
+        first_name:Mary
+        last_name:Test
+        email:mary@test.com
+     
+     endpoint: /account
+     body:
+        client_id: 1
+        account_number: ABC123
+        utility: dominion
+        account_type: residential
+        
+     endpoint: /bill
+     body: 
+        account_id: 1
+        start_date: 01-01-2015
+        end_date: 01-01-2016
+        usage: 100
+        charges: 100.00
+        status: paid
+        
+     ```
