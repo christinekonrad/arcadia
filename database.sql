@@ -278,7 +278,7 @@ COPY account (id, client_id, account_number, updated_at, created_at, utility, ac
 -- Name: account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: konradc
 --
 
-SELECT pg_catalog.setval('account_id_seq', 1, false);
+SELECT pg_catalog.setval('account_id_seq', 8, false);
 
 
 --
@@ -338,7 +338,7 @@ COPY bill (id, account_id, start_date, end_date, usage, charges, status, created
 -- Name: bill_id_seq; Type: SEQUENCE SET; Schema: public; Owner: konradc
 --
 
-SELECT pg_catalog.setval('bill_id_seq', 1, false);
+SELECT pg_catalog.setval('bill_id_seq', 31, false);
 
 
 --
@@ -367,7 +367,7 @@ COPY "user" (id, email, password, "createdAt", "updatedAt") FROM stdin;
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: arcadia
 --
 
-SELECT pg_catalog.setval('user_id_seq', 1, true);
+SELECT pg_catalog.setval('user_id_seq', 6, true);
 
 
 --
